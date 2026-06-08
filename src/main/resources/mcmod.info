@@ -1,0 +1,16 @@
+[
+{
+  "modid": "wnt",
+  "name": "World Name Terrarified",
+  "description": "Adds Terraria-like random world name generation system.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Str1llax"],
+  "credits": "Thanks to my friend Rain4ik for this mod idea!",
+  "logoFile": "WNT.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
