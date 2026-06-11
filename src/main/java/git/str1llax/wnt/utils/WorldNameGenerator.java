@@ -9,6 +9,7 @@ import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.client.resource.VanillaResourceType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.Level;
 
 import javax.annotation.Nonnull;
 import java.io.BufferedReader;
@@ -52,7 +53,7 @@ public class WorldNameGenerator implements ISelectiveResourceReloadListener {
                 new InputStreamReader(resourceManager.getResource(
                                 new ResourceLocation(WorldNameTerrarified.MOD_ID, locale + "/" + fileName)).getInputStream()));
         } catch (Exception e) {
-            e.printStackTrace();
+            WorldNameTerrarified.Logger.log(Level.WARN, "Specified locale not found. Using default (en_us) locale", e);
             reader = new BufferedReader(
                     new InputStreamReader(resourceManager.getResource(
                             new ResourceLocation(WorldNameTerrarified.MOD_ID, "en_us/" + fileName)).getInputStream()));
@@ -68,7 +69,7 @@ public class WorldNameGenerator implements ISelectiveResourceReloadListener {
             Locations = readFromFile("locations.txt", resourceManager, currentLocale);
             Nouns = readFromFile("nouns.txt", resourceManager, currentLocale);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            WorldNameTerrarified.Logger.log(Level.ERROR, "Error while loading localization files.", e);
         }
     }
 }

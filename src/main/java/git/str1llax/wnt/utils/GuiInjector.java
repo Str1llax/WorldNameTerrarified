@@ -1,5 +1,7 @@
 package git.str1llax.wnt.utils;
 
+import git.str1llax.wnt.WorldNameTerrarified;
+import git.str1llax.wnt.config.ModConfig;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiCreateWorld;
 import net.minecraft.client.gui.GuiTextField;
@@ -8,12 +10,14 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.Level;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class GuiInjector {
-    private final int NAME_BUTTON_ID = 99;
+    private final int NAME_BUTTON_ID = ModConfig.genNameButtonID;
+
     private static Field worldName = null;
     private static Field saveDirName = null;
     private static Method calcSaveDirName = null;
@@ -30,16 +34,16 @@ public class GuiInjector {
             calcSaveDirName = ObfuscationReflectionHelper.findMethod(GuiCreateWorld.class, "func_146314_g", void.class);
             calcSaveDirName.setAccessible(true);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            WorldNameTerrarified.Logger.log(Level.ERROR, "Error while deobfuscating private methods.", e);
         }
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onWorldCreationScreenOpen(GuiScreenEvent.InitGuiEvent.Post event) {
-        if (event.getGui() instanceof GuiCreateWorld) {
-            int x = event.getGui().width / 2 - 140;
-            int y = 60;
+        if (event.getGui() instanceof GuiCreateWorld && ModConfig.enableMod) {
+            int x = event.getGui().width / 2 + ModConfig.buttonX;
+            int y = ModConfig.buttonY;
 
             GuiButton genRandomNameButton = new GuiButton(NAME_BUTTON_ID, x, y, 20, 20, "R");
 
@@ -60,7 +64,7 @@ public class GuiInjector {
                     newDirName = newName.getText();
                     calcSaveDirName.invoke(newGui);
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    WorldNameTerrarified.Logger.log(Level.ERROR, "Error when pressing a genName button", e);
                 }
 
                 event.setCanceled(true);

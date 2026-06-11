@@ -11,6 +11,7 @@
   "credits": "Thanks to my friend Rain4ik for this mod idea!",
   "logoFile": "WNT.png",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": [],
+  "requiredMods": ["forge@[14.23.5.2854,14.23.5.2864]"]
 }
 ]
