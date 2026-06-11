@@ -19,7 +19,6 @@ public class GuiInjector {
     private final int NAME_BUTTON_ID = ModConfig.genNameButtonID;
 
     private static Field worldName = null;
-    private static Field saveDirName = null;
     private static Method calcSaveDirName = null;
     private static final WorldNameGenerator generator = new WorldNameGenerator();
 
@@ -27,9 +26,6 @@ public class GuiInjector {
         try {
             worldName = ObfuscationReflectionHelper.findField(GuiCreateWorld.class,"field_146333_g");
             worldName.setAccessible(true);
-
-            saveDirName = ObfuscationReflectionHelper.findField(GuiCreateWorld.class, "field_146336_i");
-            saveDirName.setAccessible(true);
 
             calcSaveDirName = ObfuscationReflectionHelper.findMethod(GuiCreateWorld.class, "func_146314_g", void.class);
             calcSaveDirName.setAccessible(true);
@@ -53,21 +49,17 @@ public class GuiInjector {
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
-    public void onRandomNameButtonPressed(GuiScreenEvent.ActionPerformedEvent.Pre event) {
+    public void onRandomNameButtonPressed(GuiScreenEvent.ActionPerformedEvent.Post event) {
         if (event.getGui() instanceof GuiCreateWorld) {
             if (event.getButton().id == NAME_BUTTON_ID) {
                 GuiCreateWorld newGui = (GuiCreateWorld)event.getGui();
                 try {
                     GuiTextField newName = (GuiTextField) worldName.get(newGui);
                     newName.setText(generator.generateRandomName());
-                    String newDirName = (String) saveDirName.get(newGui);
-                    newDirName = newName.getText();
                     calcSaveDirName.invoke(newGui);
                 } catch (Exception e) {
                     WorldNameTerrarified.Logger.log(Level.ERROR, "Error when pressing a genName button", e);
                 }
-
-                event.setCanceled(true);
             }
         }
     }

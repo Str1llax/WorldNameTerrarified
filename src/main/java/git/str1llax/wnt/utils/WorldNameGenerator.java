@@ -24,6 +24,7 @@ public class WorldNameGenerator implements ISelectiveResourceReloadListener {
     private static String[] Adjectives;
     private static String[] Locations;
     private static String[] Nouns;
+    private String currentLocale = null;
 
     @Override
     public void onResourceManagerReload(@Nonnull IResourceManager resourceManager) {
@@ -62,7 +63,7 @@ public class WorldNameGenerator implements ISelectiveResourceReloadListener {
     }
 
     private void reloadResources(IResourceManager resourceManager) {
-        String currentLocale = MinecraftForgeClient.getLocale().toString();
+        currentLocale = MinecraftForgeClient.getLocale().toString();
         try {
             Compositions = readFromFile("compositions.txt", resourceManager, currentLocale);
             Adjectives = readFromFile("adjectives.txt", resourceManager, currentLocale);

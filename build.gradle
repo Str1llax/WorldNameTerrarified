@@ -9,15 +9,14 @@ buildscript {
 }
 
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'maven-publish'
 
 version = mod_version
 group = "git.str1llax.${mod_id}"
 archivesBaseName = mod_id
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+sourceCompatibility = targetCompatibility = "1.8"
+compileJava.options.encoding = "UTF-8"
 
 minecraft {
     mappings channel: 'snapshot', version: '20171003-1.12'
@@ -28,19 +27,28 @@ minecraft {
 
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
+
+            jvmArg "${'minecraft.jvmargs'}"
         }
 
         server {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
+
+            jvmArg "${'minecraft.jvmargs'}"
         }
     }
 }
+
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 }
 
 jar {
+    archiveFileName = "${mod_id}-${minecraft_version}-${mod_version}.jar"
+
+    destinationDirectory = file("${projectDir}/builds")
+
     manifest {
         attributes([
             "Specification-Title": mod_id,
@@ -60,38 +68,7 @@ idea {
     }
 }
 
-subprojects {
-    apply plugin: 'idea'
-}
-
-task prepareAssets(type: Copy) {
-    group = 'build'
-    from project.file('src/main/resources')
-    into project.file('build/classes/java/main')
-}
-
-classes.dependsOn(prepareAssets)
-
 jar.finalizedBy('reobfJar')
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
-        }
-    }
-}
-
-sourceSets.each {
-    def dir = layout.buildDirectory.file("sourcesSets/$it.name").get().asFile
-    it.output.resourcesDir = dir
-    it.java.outputDir = dir
-}
 
 processResources {
     inputs.property "version", "${mod_version}"
