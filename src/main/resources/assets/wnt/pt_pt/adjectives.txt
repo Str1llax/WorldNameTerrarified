@@ -1,0 +1,724 @@
+(Ameaçador)
+(Assassino)
+(Celestial)
+(Danificado)
+(Demente)
+(Demoníaco)
+(Disposto)
+(Divino)
+(Doloroso)
+(Enorme)
+(Estranho)
+(Fraco)
+(Furioso)
+(Ignorante)
+(Implacável)
+(Intenso)
+(Irritante)
+(Lendário)
+(Ligeiro)
+(Mítico)
+(Nojento)
+(Perigoso)
+(Poderoso)
+(Pontudo)
+(Preguiçoso)
+(Quebrado)
+(Raivoso)
+(Rápido)
+(Terrível)
+(Vigoroso)
+(Violento)
+(Ágil)
+Abandonado
+Abatido
+Aberto
+Abusivo
+Adorável
+Adorável
+Afiado
+Aflito
+Agradável
+Agressivo
+Alegre
+Alerta
+Alienígena
+Aliviado
+Aliviante
+Amaldiçoado
+Amalucado
+Amarelo
+Amargo
+Ametista
+Amigável
+Amável
+Angelical
+Angustiante
+Animado
+Ansioso
+Antigo
+Apavorado
+Apodrecido
+Arcaico
+Ardente
+Arriscado
+Arrogante
+Assustador
+Assustador
+Assustador
+Assustador
+Aterrorizado
+Atormentado
+Atrativo
+Atrevido
+Aventureiro
+Azedo
+Azul
+Azul-marinho
+Azulado
+Balbuciante
+Barato
+Beligerante
+Bizarro
+Bobo
+Bom
+Bom
+Bondoso
+Bonitinho
+Bonitão
+Bravo
+Bravo
+Brilhante
+Brilhante
+Brutal
+Bárbaro
+Calma
+Calmo
+Canadense
+Cansado
+Cansado
+Carmim
+Caro
+Caseiro
+Cauteloso
+Cauteloso
+Cauterizado
+Caído
+Celeste
+Charmoso
+Chateado
+Chateado
+Chateável
+Chato
+Cheio
+Chippy's
+Chique
+Chocante
+Choroso
+Cintilante
+Cinzento
+Ciumento
+Clássico
+Coberto de Pinheiros
+Colorido
+Com Caroço
+Com Flores
+Com Náusea
+Com Tudo
+Complacente
+Compulsivo
+Comum
+Condenado
+Condenável
+Confiante
+Confiante
+Confortável
+Confundível
+Confuso
+Consagrado
+Constante
+Convicto
+Cooperativo
+Cor-de-laranja
+Cor-de-rosa
+Corado
+Corajoso
+Corrupto
+Covarde
+Crescente
+Cringe
+Cru
+Cruel
+Crítico
+Cuidadoso
+Culpado
+Curioso
+Cítrico
+Cósmico
+Cômico
+Decepcionante
+Delgado
+Delicioso
+Delicioso
+Demais
+Demente
+Denso
+Deprimido
+Derrotado
+Desabrigado
+Desafiador
+Desagradável
+Desajeitado
+Desamparado
+Desamparado
+Descartado
+Desconhecido
+Desejoso
+Desesperado
+Desinteressado
+Desleal
+Desmiolado
+Desolado
+Desorganizado
+Desorientado
+Despreocupado
+Desprezível
+Determinado
+Diamante
+Diferenciado
+Diferente
+Difícil
+Difícil
+Diplomático
+Disforme
+Disparatado
+Distante
+Distante
+Distinto
+Distorcido
+Divertido
+Divino
+Dolorido
+Domado
+Dominado
+Dotado
+Duradouro
+Duvidoso
+Duvidoso
+Dócil
+Egoísta
+Elegante
+Empolado
+Encantado
+Encorajador
+Enegrecido
+Energético
+Enfadonho
+Enfuriante
+Engenhoso
+Ensebado
+Entediado
+Entusiasmado
+Envergonhado
+Envergonhado
+Equilibrado
+Errado
+Errante
+Errante
+Escamoso
+Escandaloso
+Escuro
+Esmeralda
+Espantado
+Espantoso
+Espantoso
+Espasmódico
+Espertalhão
+Espesso
+Espinhoso
+Espiritual
+Espirituoso
+Esplêndido
+Esquecido
+Essencial
+Estrangeiro
+Estranho
+Estranho
+Estranho
+Estável
+Estúpido
+Eterno
+Eterno
+Eufórico
+Exaltado
+Exaltado
+Excelente
+Excitado
+Excêntrico
+Exilado
+Existencial
+Exitoso
+Extinto
+Extra
+Extraordinário
+Extravagante
+Exuberante
+Exótico
+Fabuloso
+Falecido
+Faminto
+Famoso
+Fantástico
+Fedorento
+Fedorento
+Feio
+Feliz
+Felizão
+Feroz
+Fiel
+Firme
+Flamejante
+Flatulento
+Florescente
+Fofinho
+Fofuxo
+Folhoso
+Fora da Lei
+Formoso
+Forte
+Forte
+Fraco
+Fraco
+Frenético
+Fresco
+Frio
+Frágil
+Fumegante
+Fácil
+Fácil
+Fértil
+Fétido
+Fútil
+Ganancioso
+Gangrenoso
+Gasto
+Gatuno
+Gelatinoso
+Genial
+Gentil
+Glamoroso
+Glorioso
+Gracioso
+Grande
+Grande
+Grandioso
+Grato
+Grisalho
+Grosso
+Grotesco
+Hardcore
+Hediondo
+Hesitante
+Hilário
+Hiperativo
+Histérico
+Horrorizante
+Horroroso
+Horrível
+Ileso
+Iluminado
+Ilusivo
+Ilícito
+Imaginário
+Imortal
+Impaciente
+Impecável
+Impecável
+Imperdoável
+Imperecível
+Impetuoso
+Impiedoso
+Imprudente
+Imprudente
+Imundo
+Imóvel
+Inaceitável
+Incansável
+Inclemente
+Incompetente
+Incomum
+Inconsequente
+Inconveniente
+Incólume
+Indeciso
+Indiferente
+Indignado
+Inexplorado
+Inexplorado
+Infectado
+Infeliz
+Inferior
+Infinito
+Inflexível
+Iniciante
+Inocente
+Inquebrável
+Inquebrável
+Inseguro
+Inseguro
+Insolente
+Inteligente
+Interessante
+Intocado
+Intransigente
+Intrigado
+Invejoso
+Inútil
+Irresponsável
+Irritante
+Isolado
+Justo
+Lamacento
+Latente
+Leal
+Legal
+Legal
+Lento
+Limpar
+Limpo
+Limpável
+Lindo
+Lindo
+Liso
+Longo
+Longínquo
+Louco
+Luxuoso
+Luz
+Luz
+Lívido
+Lúgubre
+Macabro
+Machucado
+Macio
+Magnífico
+Majestoso
+Mal-humorado
+Mal-humorado
+Malcriado
+Maluco
+Malvado
+Maravilhoso
+Maravilhoso
+Marrom
+Marshmallow
+Massa
+Mediano
+Mediano
+Medonho
+Meia-boca
+Melhor
+Mimado
+Minúsculo
+Miserável
+Misterioso
+Moderno
+Modular
+Mofado
+Molhado
+Monótono
+Morto
+Movimentado
+Mágico
+Natural
+Natural
+Nauseante
+Negligenciado
+Nervoso
+Noite
+Nojento
+Novo
+Nu
+Nublado
+Não Fungível
+Obediente
+Obsessivo
+Obstinado
+Obstruído
+Obtuso
+Oculto
+Odioso
+Ofendido
+Ofensivo
+Opaco
+Orgulhoso
+Otimista
+Pacífico
+Palerma
+Pateta
+Peculiar
+Pelado
+Pensativo
+Perdido
+Perfeito
+Perigoso
+Perigoso
+Pernicioso
+Perpétuo
+Perpétuo
+Persistente
+Perturbado
+Perverso
+Petrificado
+Piedoso
+Piegas
+Pitoresco
+Plácido
+Pobre
+Pobre
+Podre
+Polido
+Polivalente
+Poluído
+Pouco Conhecido
+Precioso
+Preguiçoso
+Preocupado
+Preocupado
+Preocupante
+Prodigioso
+Pululante
+Purificado
+Pálido
+Púrpura
+Pútrido
+Quebrável
+Queimando
+Quente
+Quieto
+Rachado
+Radiante
+Rancoroso
+Ranzinza
+Rançoso
+Real
+Rejeitado
+Relvado
+Remoto
+Repugnante
+Repulsivo
+Repulsivo
+Resistente
+Ressecado
+Revoltante
+Rico
+Ridículo
+Robusto
+Rubi
+Ruborizado
+Rude
+Ruim
+Rústico
+Safira
+Sagrado
+Sagrado
+Sangrando
+Sangrento
+Saudável
+Seco
+Sedado
+Selvagem
+Selvagem
+Sem Fim
+Sem Morros
+Senil
+Sensacional
+Sensível
+Sensível
+Sereno
+Significativo
+Silenciado
+Simples
+Simples
+Simplório
+Soberbo
+Sobrenatural
+Sofredor
+Solar
+Solitário
+Sombrio
+Sombrio
+Sonhador
+Sorridente
+Sortudo
+Suado
+Sujo
+Sujo
+Superassustador
+Superdivertido
+Superfeliz
+Superior
+Superlegal
+Superlotado
+Superprotetor
+Suposto
+Supremo
+Surreal
+Sábio
+Sádico
+Sério
+Sólido
+Talentoso
+Tempestuoso
+Temível
+Tenaz
+Tensionado
+Tenso
+Terrível
+Terrível
+Tolo
+Tonto
+Topázio
+Torto
+Tortuoso
+Tortuoso
+Tosco
+Tradicional
+Tranquilo
+Tranquilo
+Trevoso
+Triste
+Triste
+Tropical
+Tímido
+Tímido
+Ultrajante
+Vagaroso
+Vago
+Vanila
+Vasto
+Vazio
+Velho
+Venenoso
+Ventoso
+Verde
+Verde-amarelado
+Verde-oliva
+Verdejante
+Vergonhoso
+Vergonhoso
+Viajante
+Vibrante
+Vicioso
+Vil
+Violeta
+Viridiano
+Vitorioso
+Vivaz
+Vivo
+Volátil
+Vulgar
+Vão
+Vívido
+YOLO
+Zeloso
+com Infecção
+da Alvura
+da Animação
+da Areia
+da Arrumação Impecável
+da Cabeça no Mundo da Lua
+da Cara de Ovo
+da Corpulência
+da Corrupção
+da Cozinha
+da Degeneração
+da Discrição
+da Exibição
+da Fecundidade
+da Felicidadezinha
+da Festa
+da Fortificação
+da Fraude
+da Galinha
+da Hibridez
+da Iluminação
+da Karen
+da Luz da Lua
+da Malícia
+da Matemática
+da Maçã
+da Pequeneza
+da Perfídia
+da Pimenta
+da Postura
+da Sede
+da Segurança
+da Suspeição
+da Tia Maria
+da Toxicidade
+da Volúpia
+de Abóbora
+de Cereja
+de Esqueletron
+de Jade
+de Lavanda
+de Limão
+de Ouro
+de Prata
+de Pêssego
+de Tirar o Fôlego
+do Bob Saget
+do Cancelamento
+do Chad
+do Ciano
+do Dragão
+do Engolimento
+do Esqueleto
+do Fedor
+do Florescimento
+do Goblin
+do Grude
+do Guia
+do Homem Morto
+do Lag
+do Magnetismo
+do Molhinho
+do Morto-vivo
+do Pintor
+do Planking
+do Prisma
+do Red
+do Retorcimento
+do Salgado
+do Senhor da Lua
+do Sermão
+do Sumiço
+do Thanos
+do Vampirismo
+do Vapor
+dos Cantos Arredondados
+em Decomposição
+mais Feio
+não Combativo
+não Cooperativo
+não Descoberto
+não Determinado
+não Dominado
+não Perverso
+que Chama a Atenção
+que Coça
+que Deixa a Desejar
+que Flui
+que Incomoda
+que Não Paga Aluguel
+que Pinga
+sem Fim
+sem Nome
+sem Talento
+Âmbar
+Ímpar
+Ótimo
+Úmido
+Úmido
+Útil

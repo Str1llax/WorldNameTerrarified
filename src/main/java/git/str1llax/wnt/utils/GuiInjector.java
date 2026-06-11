@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-public class GuiHandler {
+public class GuiInjector {
     private final int NAME_BUTTON_ID = 99;
     private static Field worldName = null;
     private static Field saveDirName = null;
@@ -28,6 +28,7 @@ public class GuiHandler {
             saveDirName.setAccessible(true);
 
             calcSaveDirName = ObfuscationReflectionHelper.findMethod(GuiCreateWorld.class, "func_146314_g", void.class);
+            calcSaveDirName.setAccessible(true);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -40,7 +41,7 @@ public class GuiHandler {
             int x = event.getGui().width / 2 - 140;
             int y = 60;
 
-            GuiButton genRandomNameButton = new GuiButton(NAME_BUTTON_ID, x, y, 20, 20, "G");
+            GuiButton genRandomNameButton = new GuiButton(NAME_BUTTON_ID, x, y, 20, 20, "R");
 
             event.getButtonList().add(genRandomNameButton);
         }

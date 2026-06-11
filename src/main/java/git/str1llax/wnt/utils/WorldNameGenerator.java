@@ -3,6 +3,7 @@ package git.str1llax.wnt.utils;
 import git.str1llax.wnt.WorldNameTerrarified;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.resource.IResourceType;
 import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.client.resource.VanillaResourceType;
@@ -30,15 +31,8 @@ public class WorldNameGenerator implements ISelectiveResourceReloadListener {
 
     @Override
     public void onResourceManagerReload(@Nonnull IResourceManager resourceManager, Predicate<IResourceType> resourcePredicate) {
-        if (resourcePredicate.test(VanillaResourceType.TEXTURES)) {
-            try {
-                Compositions = readFromFile("compositions.txt", resourceManager);
-                Adjectives = readFromFile("adjectives.txt", resourceManager);
-                Locations = readFromFile("locations.txt", resourceManager);
-                Nouns = readFromFile("nouns.txt", resourceManager);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+        if (resourcePredicate.test(VanillaResourceType.TEXTURES) || resourcePredicate.test(VanillaResourceType.LANGUAGES)) {
+            reloadResources(resourceManager);
         }
     }
 
@@ -51,11 +45,30 @@ public class WorldNameGenerator implements ISelectiveResourceReloadListener {
                 .replace("$", Nouns[random.nextInt(Nouns.length)]);
     }
 
-    private static String[] readFromFile(String fileName, IResourceManager resourceManager) throws IOException {
-        BufferedReader reader = new BufferedReader(
+    private String[] readFromFile(String fileName, IResourceManager resourceManager, String locale) throws IOException {
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(
                 new InputStreamReader(resourceManager.getResource(
-                                new ResourceLocation(WorldNameTerrarified.MOD_ID, "texts/" + fileName)).getInputStream()));
-
+                                new ResourceLocation(WorldNameTerrarified.MOD_ID, locale + "/" + fileName)).getInputStream()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            reader = new BufferedReader(
+                    new InputStreamReader(resourceManager.getResource(
+                            new ResourceLocation(WorldNameTerrarified.MOD_ID, "en_us/" + fileName)).getInputStream()));
+        }
         return reader.lines().toArray(String[]::new);
+    }
+
+    private void reloadResources(IResourceManager resourceManager) {
+        String currentLocale = MinecraftForgeClient.getLocale().toString();
+        try {
+            Compositions = readFromFile("compositions.txt", resourceManager, currentLocale);
+            Adjectives = readFromFile("adjectives.txt", resourceManager, currentLocale);
+            Locations = readFromFile("locations.txt", resourceManager, currentLocale);
+            Nouns = readFromFile("nouns.txt", resourceManager, currentLocale);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
