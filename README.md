@@ -1,6 +1,12 @@
 # World Name Terrarified - WNT
 ## About
 WNT is a small Minecraft mod, which adds only one (for now) simple feature. Random world name generator exactly like in Terraria! (Not 100% sure, but anyway)
+## Downloads
+- [Modrinth](https://modrinth.com/mod/world-name-terrarified)
+- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/world-name-terrarified)
+
+
+***And if you post this mod on a third-party websites, please include a link to the official download from the platforms listed above. Thank you <3***
 ## How it works
 Mod adds a small square button with letter 'R' on it to the world creation screen, on the left from world name field. When you press the button it chooses 4 random entries from specific files and creates a *unique* name.
 ## Compatibilities
