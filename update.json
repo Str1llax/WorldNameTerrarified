@@ -1,10 +1,11 @@
 {
   "homepage": "https://github.com/Str1llax/WorldNameTerrarified",
   "promotions": {
-    "1.12.2-latest": "1.0",
-    "1.12.2-recommended": "1.0"
+    "1.12.2-latest": "1.1",
+    "1.12.2-recommended": "1.1"
   },
   "1.12.2": {
-    "1.0": "First release! Lots of testing still required, but it works as expected."
+    "1.0": "First release! Lots of testing still required, but it works as expected.",
+    "1.1": "Added debugger and fixed a bug where UTF-8 characters on Windows wouldn't load as expected."
   }
 }

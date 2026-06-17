@@ -26,11 +26,13 @@ public class GuiInjector {
         try {
             worldName = ObfuscationReflectionHelper.findField(GuiCreateWorld.class,"field_146333_g");
             worldName.setAccessible(true);
+            WorldNameTerrarified.Logger.log(Level.DEBUG, String.format("%s: Successfully deobfuscated worldName vanilla field from  Minecraft.", WorldNameTerrarified.MOD_NAME));
 
             calcSaveDirName = ObfuscationReflectionHelper.findMethod(GuiCreateWorld.class, "func_146314_g", void.class);
             calcSaveDirName.setAccessible(true);
+            WorldNameTerrarified.Logger.log(Level.DEBUG, String.format("%s: Successfully deobfuscated calcSaveDir vanilla method from  Minecraft.", WorldNameTerrarified.MOD_NAME));
         } catch (Exception e) {
-            WorldNameTerrarified.Logger.log(Level.ERROR, "Error while deobfuscating private methods.", e);
+            WorldNameTerrarified.Logger.log(Level.ERROR, String.format("%s: Error while deobfuscating private methods.", WorldNameTerrarified.MOD_NAME), e);
         }
     }
 
@@ -44,6 +46,7 @@ public class GuiInjector {
             GuiButton genRandomNameButton = new GuiButton(NAME_BUTTON_ID, x, y, 20, 20, "R");
 
             event.getButtonList().add(genRandomNameButton);
+            WorldNameTerrarified.Logger.log(Level.DEBUG, String.format("%s: Successfully created new button.", WorldNameTerrarified.MOD_NAME));
         }
     }
 
@@ -57,8 +60,9 @@ public class GuiInjector {
                     GuiTextField newName = (GuiTextField) worldName.get(newGui);
                     newName.setText(generator.generateRandomName());
                     calcSaveDirName.invoke(newGui);
+                    WorldNameTerrarified.Logger.log(Level.DEBUG, String.format("%s: New random name generated.", WorldNameTerrarified.MOD_NAME));
                 } catch (Exception e) {
-                    WorldNameTerrarified.Logger.log(Level.ERROR, "Error when pressing a genName button", e);
+                    WorldNameTerrarified.Logger.log(Level.ERROR, String.format("%s: Error when pressing a genName button.", WorldNameTerrarified.MOD_NAME), e);
                 }
             }
         }

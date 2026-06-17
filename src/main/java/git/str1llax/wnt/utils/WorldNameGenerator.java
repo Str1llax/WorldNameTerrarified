@@ -15,6 +15,7 @@ import javax.annotation.Nonnull;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -52,13 +53,15 @@ public class WorldNameGenerator implements ISelectiveResourceReloadListener {
         try {
             reader = new BufferedReader(
                 new InputStreamReader(resourceManager.getResource(
-                                new ResourceLocation(WorldNameTerrarified.MOD_ID, locale + "/" + fileName)).getInputStream()));
+                                new ResourceLocation(WorldNameTerrarified.MOD_ID, locale + "/" + fileName)).getInputStream(), StandardCharsets.UTF_8));
+
         } catch (Exception e) {
-            WorldNameTerrarified.Logger.log(Level.WARN, "Specified locale not found. Using default (en_us) locale", e);
+            WorldNameTerrarified.Logger.log(Level.WARN, String.format("%s: Specified locale not found. Using default (en_us) locale", WorldNameTerrarified.MOD_NAME), e);
             reader = new BufferedReader(
                     new InputStreamReader(resourceManager.getResource(
-                            new ResourceLocation(WorldNameTerrarified.MOD_ID, "en_us/" + fileName)).getInputStream()));
+                            new ResourceLocation(WorldNameTerrarified.MOD_ID, "en_us/" + fileName)).getInputStream(), StandardCharsets.UTF_8));
         }
+        WorldNameTerrarified.Logger.log(Level.DEBUG, String.format("%s: Reloaded %s with locale %s", WorldNameTerrarified.MOD_NAME, fileName, locale));
         return reader.lines().toArray(String[]::new);
     }
 
@@ -70,7 +73,7 @@ public class WorldNameGenerator implements ISelectiveResourceReloadListener {
             Locations = readFromFile("locations.txt", resourceManager, currentLocale);
             Nouns = readFromFile("nouns.txt", resourceManager, currentLocale);
         } catch (Exception e) {
-            WorldNameTerrarified.Logger.log(Level.ERROR, "Error while loading localization files.", e);
+            WorldNameTerrarified.Logger.log(Level.ERROR, String.format("%s: Error while loading localization files.", WorldNameTerrarified.MOD_NAME), e);
         }
     }
 }
