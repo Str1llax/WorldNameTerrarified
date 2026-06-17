@@ -10,8 +10,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = WorldNameTerrarified.MOD_ID,
-        name = WorldNameTerrarified.MOD_NAME,
-        guiFactory = "git.str1llax.wnt.config.ModConfigGUIFactory")
+    name = WorldNameTerrarified.MOD_NAME,
+    guiFactory = "git.str1llax.wnt.config.ModConfigGUIFactory",
+    updateJSON = "https://raw.githubusercontent.com/Str1llax/WorldNameTerrarified/refs/heads/master/update.json",
+    useMetadata = true)
 public class WorldNameTerrarified
 {
     public static final String MOD_ID = "wnt";
