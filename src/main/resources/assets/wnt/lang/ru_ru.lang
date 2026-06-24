@@ -1,0 +1,17 @@
+config.category.general=Основные
+config.category.general.tooltip=Основная конфигурация
+
+config.property.enableMod=Мод включен
+config.property.enableMod.tooltip=Включает/Выключает новый кнопку, добавленную модом
+config.property.buttonX=X Кнопки
+config.property.buttonX.tooltip=Меняет ОТСТУП по горизонтали от ЦЕНТРА экрана для кнопки
+config.property.buttonY=Y Кнопки
+config.property.buttonY.tooltip=Меняет Y (вертикальную) координату для кнопки начиная с ВЕРХА окна
+
+config.category.requires_mc_restart=Требует перезапуск
+config.category.requires_mc_restart.tooltip=Настройки, которые требуют перезапуск игры для внесения изменений
+
+config.property.genNameButtonID=ID Кнопки
+config.property.genNameButtonID.tooltip=Определяет ID новой кнопки, добавленной модом. Следует менять в случае конфликтов
+config.property.worldNameLength=Длина названия мира
+config.property.worldNameLength.tooltip=Меняет максимальную длину названия мира

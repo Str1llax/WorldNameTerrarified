@@ -1,0 +1,17 @@
+config.category.general=General
+config.category.general.tooltip=General configuration
+
+config.property.enableMod=Enable Mod
+config.property.enableMod.tooltip=Enables/Disables Mod Custom Button
+config.property.buttonX=Button X
+config.property.buttonX.tooltip=Specifies horizontal OFFSET from the CENTER of the screen
+config.property.buttonY=Button Y
+config.property.buttonY.tooltip=Specifies the Y (vertical) coordinate of the button starting from the TOP
+
+config.category.requires_mc_restart=Requires MC Restart
+config.category.requires_mc_restart.tooltip=Options that requires Minecraft restart
+
+config.property.genNameButtonID=Button ID
+config.property.genNameButtonID.tooltip=Specify the ID of the new custom button added by mod. Change in case of conflicts
+config.property.worldNameLength=World Name Length
+config.property.worldNameLength.tooltip=Specifies the maximum length of world name when creating a new world
