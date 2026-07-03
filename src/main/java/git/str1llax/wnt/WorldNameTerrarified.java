@@ -10,12 +10,11 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = WorldNameTerrarified.MOD_ID,
-    name = WorldNameTerrarified.MOD_NAME,
-    guiFactory = "git.str1llax.wnt.config.ModConfigGUIFactory",
-    updateJSON = "https://raw.githubusercontent.com/Str1llax/WorldNameTerrarified/refs/heads/master/update.json",
-    useMetadata = true)
-public class WorldNameTerrarified
-{
+        name = WorldNameTerrarified.MOD_NAME,
+        guiFactory = "git.str1llax.wnt.config.ModConfigGUIFactory",
+        updateJSON = "https://raw.githubusercontent.com/Str1llax/WorldNameTerrarified/refs/heads/master/update.json",
+        useMetadata = true)
+public class WorldNameTerrarified {
     public static final String MOD_ID = "wnt";
     public static final String MOD_NAME = "World Name Terrarified";
 
@@ -24,7 +23,7 @@ public class WorldNameTerrarified
 
     public static Logger Logger;
 
-    @SidedProxy(clientSide = "git.str1llax."+MOD_ID+".proxy.ClientProxy", serverSide = "git.str1llax."+MOD_ID+".proxy.ServerProxy")
+    @SidedProxy(clientSide = "git.str1llax." + MOD_ID + ".proxy.ClientProxy", serverSide = "git.str1llax." + MOD_ID + ".proxy.ServerProxy")
     public static CommonProxy proxy;
 
     @EventHandler

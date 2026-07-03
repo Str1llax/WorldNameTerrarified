@@ -1,17 +1,33 @@
+# General config
 config.category.general=Основные
 config.category.general.tooltip=Основная конфигурация
 
 config.property.enableMod=Мод включен
-config.property.enableMod.tooltip=Включает/Выключает новый кнопку, добавленную модом
-config.property.buttonX=X Кнопки
-config.property.buttonX.tooltip=Меняет ОТСТУП по горизонтали от ЦЕНТРА экрана для кнопки
-config.property.buttonY=Y Кнопки
-config.property.buttonY.tooltip=Меняет Y (вертикальную) координату для кнопки начиная с ВЕРХА окна
+config.property.enableMod.tooltip=Включает/Выключает мод
 
+# Button visuals config
+config.category.button_visuals=Внешний вид
+config.category.button_visuals.tooltip=Меняет внешний вид кнопки
+
+config.property.enableButtonTooltip=Включить подсказку
+config.property.buttonX.enableButtonTooltip=Подсказка при наведении мыши на кнопку
+config.property.useTexturedButton=Использовать красивую кнопку
+config.property.buttonX.useTexturedButton=Заменяет скучный квадрат на красивую текстуру
+config.property.buttonSize=Размер кнопки
+config.property.buttonX.buttonSize=Размер кнопки в пикселях
+config.property.buttonX=X
+config.property.buttonX.tooltip=Меняет ОТСТУП по горизонтали от ЦЕНТРА экрана для кнопки
+config.property.buttonY=Y
+config.property.buttonY.tooltip=Меняет вертикальную координату для кнопки начиная с ВЕРХА окна
+
+# Requires MC restart config
 config.category.requires_mc_restart=Требует перезапуск
 config.category.requires_mc_restart.tooltip=Настройки, которые требуют перезапуск игры для внесения изменений
 
-config.property.genNameButtonID=ID Кнопки
-config.property.genNameButtonID.tooltip=Определяет ID новой кнопки, добавленной модом. Следует менять в случае конфликтов
+config.property.genNameButtonID=ID
+config.property.genNameButtonID.tooltip=Изменяет ID новой кнопки. Следует менять в случае конфликтов
 config.property.worldNameLength=Длина названия мира
 config.property.worldNameLength.tooltip=Меняет максимальную длину названия мира
+
+# Button tooltips
+button.gen_random_name.tooltip=Случайное имя

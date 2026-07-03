@@ -8,7 +8,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -19,8 +18,7 @@ import java.io.File;
 @Mod.EventBusSubscriber
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
-        ModConfig.config = new Configuration(new File(event.getModConfigurationDirectory().getPath(), WorldNameTerrarified.MOD_ID + ".cfg"));
-        ModConfig.readConfig();
+        ModConfig.init(new File(event.getModConfigurationDirectory().getPath(), WorldNameTerrarified.MOD_ID + ".cfg"));
     }
 
     public void init(FMLInitializationEvent event) {
@@ -35,7 +33,7 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        if(ModConfig.config.hasChanged()) {
+        if (ModConfig.config.hasChanged()) {
             ModConfig.config.save();
         }
     }

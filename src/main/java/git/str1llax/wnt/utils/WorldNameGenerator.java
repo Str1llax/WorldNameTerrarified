@@ -52,8 +52,8 @@ public class WorldNameGenerator implements ISelectiveResourceReloadListener {
         BufferedReader reader;
         try {
             reader = new BufferedReader(
-                new InputStreamReader(resourceManager.getResource(
-                                new ResourceLocation(WorldNameTerrarified.MOD_ID, locale + "/" + fileName)).getInputStream(), StandardCharsets.UTF_8));
+                    new InputStreamReader(resourceManager.getResource(
+                            new ResourceLocation(WorldNameTerrarified.MOD_ID, locale + "/" + fileName)).getInputStream(), StandardCharsets.UTF_8));
 
         } catch (Exception e) {
             WorldNameTerrarified.Logger.log(Level.WARN, String.format("%s: Specified locale not found. Using default (en_us) locale", WorldNameTerrarified.MOD_NAME), e);

@@ -2,9 +2,9 @@ package git.str1llax.wnt.utils;
 
 import git.str1llax.wnt.WorldNameTerrarified;
 import git.str1llax.wnt.config.ModConfig;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiCreateWorld;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -25,11 +25,11 @@ public class GuiInjector {
 
     private static final WorldNameGenerator generator = new WorldNameGenerator();
 
-    private GuiButton genRandomNameButton;
+    private CustomButton genRandomNameButton;
 
     static {
         try {
-            worldName = ObfuscationReflectionHelper.findField(GuiCreateWorld.class,"field_146333_g");
+            worldName = ObfuscationReflectionHelper.findField(GuiCreateWorld.class, "field_146333_g");
             worldName.setAccessible(true);
             WorldNameTerrarified.Logger.log(Level.DEBUG, String.format("%s: Successfully deobfuscated worldName vanilla field from Minecraft.", WorldNameTerrarified.MOD_NAME));
 
@@ -52,7 +52,22 @@ public class GuiInjector {
             int x = event.getGui().width / 2 + ModConfig.buttonX;
             int y = ModConfig.buttonY;
 
-            genRandomNameButton = new GuiButton(NAME_BUTTON_ID, x, y, 20, 20, "R");
+            genRandomNameButton = ModConfig.useTexturedButton ?
+                    new CustomButton(
+                            NAME_BUTTON_ID,
+                            x, y,
+                            ModConfig.buttonSize, ModConfig.buttonSize,
+                            18, 18,
+                            0, 0,
+                            18,
+                            new ResourceLocation(WorldNameTerrarified.MOD_ID, "textures/gui/buttons.png"),
+                            "button.gen_random_name.tooltip") :
+                    new CustomButton(
+                            NAME_BUTTON_ID,
+                            x, y,
+                            ModConfig.buttonSize, ModConfig.buttonSize,
+                            "R", "button.gen_random_name.tooltip");
+
             event.getButtonList().add(genRandomNameButton);
 
             WorldNameTerrarified.Logger.log(Level.DEBUG, String.format("%s: Successfully created new button.", WorldNameTerrarified.MOD_NAME));
@@ -63,7 +78,7 @@ public class GuiInjector {
     @SubscribeEvent
     public void onRandomNameButtonPressed(GuiScreenEvent.ActionPerformedEvent.Post event) {
         if (event.getGui() instanceof GuiCreateWorld) {
-            GuiCreateWorld newGui = (GuiCreateWorld)event.getGui();
+            GuiCreateWorld newGui = (GuiCreateWorld) event.getGui();
             if (event.getButton().id == NAME_BUTTON_ID) {
                 try {
                     GuiTextField newName = (GuiTextField) worldName.get(newGui);
@@ -94,7 +109,7 @@ public class GuiInjector {
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
-    public void onDrawScreen(GuiScreenEvent.DrawScreenEvent.Pre event) {
+    public void onDrawScreenPre(GuiScreenEvent.DrawScreenEvent.Pre event) {
         if (event.getGui() instanceof GuiCreateWorld) {
             GuiCreateWorld guiCreateWorld = (GuiCreateWorld) event.getGui();
             try {
@@ -102,6 +117,17 @@ public class GuiInjector {
                 genRandomNameButton.visible = !inMoreSettings;
             } catch (Exception e) {
                 WorldNameTerrarified.Logger.log(Level.ERROR, String.format("%s: Something went wrong when tried to hide button.", WorldNameTerrarified.MOD_NAME), e);
+            }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onDrawScreenPost(GuiScreenEvent.DrawScreenEvent.Post event) {
+        if (event.getGui() instanceof GuiCreateWorld && ModConfig.enableButtonTooltip) {
+            GuiCreateWorld guiCreateWorld = (GuiCreateWorld) event.getGui();
+            if (genRandomNameButton.isMouseOver()) {
+                genRandomNameButton.drawTooltip(event.getMouseX(), event.getMouseY(), guiCreateWorld);
             }
         }
     }
