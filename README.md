@@ -41,7 +41,7 @@ Important things to know about it:
 - `adjectives.txt, locations.txt, nouns.txt` - are just lists with variants separated by lines, they'll replace `@`, `#` or `$`([examples](https://github.com/Str1llax/WorldNameTerrarified/tree/master/src/main/resources/assets/wnt/en_us))
 - Names of the files **MUST** be exact the same as shown above!\
 \
-So to modify the original mod you simply need to create a resource pack with a suitable pack.mcmeta and directory `assets/wnt/LOCALE_CODE/` where you'll put the files you'd like to modify or add. You can also override already existing resources as well as adding new locales!
+So to modify the original mod you simply need a suitable pack.mcmeta and directory `assets/wnt/compositions/LOCALE_CODE/` where you'll put the files you'd like to modify or add. You can override already existing resources as well as adding new locales!
 ## Credits
 Thanks!\
 [terraria.wiki.gg](https://terraria.wiki.gg/wiki/World/Name) for provided lists of words which this mod uses.
