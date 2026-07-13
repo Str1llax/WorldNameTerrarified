@@ -1,9 +1,9 @@
 package git.str1llax.wnt.config;
 
 import git.str1llax.wnt.WorldNameTerrarified;
+import git.str1llax.wnt.utils.WorldNameGenerator;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Level;
 
 import java.io.File;
@@ -11,15 +11,15 @@ import java.io.File;
 public class ModConfig {
     public static Configuration config;
 
-    private static final String CONFIG_VERSION = "1.0";
+    private static final String CONFIG_VERSION = "1.1";
 
     public static final String CATEGORY_GENERAL = "general";
-    public static final String CATEGORY_MC_RESTART = "requires_mc_restart";
-    public static final String BUTTON_VISUALS = "button_visuals";
 
-    public static boolean enableMod = true;
     public static boolean enableButtonTooltip = true;
     public static boolean useTexturedButton = true;
+    public static boolean useMcLocale = true;
+    public static boolean startWithRandom = true;
+    public static String localeCode = "en_us";
     public static int genNameButtonID = 99;
     public static int worldNameLength = 128;
     public static int buttonX = -140;
@@ -54,9 +54,13 @@ public class ModConfig {
         }
     }
 
-    private static void loadConfig() {
+    public static void loadConfig() {
         initCategories(config);
-
+        if (config.get(CATEGORY_GENERAL, "useMcLocale", true).hasChanged() ||
+                config.get(CATEGORY_GENERAL, "useMcLocale", true).getBoolean() &&
+                        config.get(CATEGORY_GENERAL, "localeCode", "en_us").hasChanged()) {
+            WorldNameGenerator.reloadResources(Minecraft.getMinecraft().getResourceManager());
+        }
         if (config.hasChanged()) {
             config.save();
         }
@@ -67,30 +71,15 @@ public class ModConfig {
         cfg.setCategoryRequiresMcRestart(CATEGORY_GENERAL, false);
         cfg.setCategoryRequiresWorldRestart(CATEGORY_GENERAL, false);
         cfg.getCategory(CATEGORY_GENERAL).setLanguageKey("config.category.general");
-        enableMod = cfg.getBoolean("enableMod", CATEGORY_GENERAL, true, "Enables or disables custom button and name generation in the world creation menu", "config.property.enableMod");
-
-        cfg.addCustomCategoryComment(BUTTON_VISUALS, "Button visual settings");
-        cfg.setCategoryRequiresMcRestart(BUTTON_VISUALS, false);
-        cfg.setCategoryRequiresWorldRestart(BUTTON_VISUALS, false);
-        cfg.getCategory(BUTTON_VISUALS).setLanguageKey("config.category.button_visuals");
-        enableButtonTooltip = cfg.getBoolean("enableButtonTooltip", BUTTON_VISUALS, true, "Enables button tooltip", "config.property.enableButtonTooltip");
-        useTexturedButton = cfg.getBoolean("useTexturedButton", BUTTON_VISUALS, true, "Use new fancy button texture instead of default square", "config.property.useTexturedButton");
-        buttonSize = cfg.getInt("buttonSize", BUTTON_VISUALS, 20, 1, Integer.MAX_VALUE, "The preferred size in px of the button", "config.property.buttonSize");
-        buttonX = cfg.getInt("buttonX", BUTTON_VISUALS, -140, Integer.MIN_VALUE, Integer.MAX_VALUE, "Specifies horizontal OFFSET from the CENTER of the screen", "config.property.buttonX");
-        buttonY = cfg.getInt("buttonY", BUTTON_VISUALS, 60, 0, Integer.MAX_VALUE, "Specifies the Y coordinate of the button starting from the TOP LEFT corner", "config.property.buttonY");
-
-        cfg.addCustomCategoryComment(CATEGORY_MC_RESTART, "Category that requires MC restart to apply changes");
-        cfg.setCategoryRequiresMcRestart(CATEGORY_MC_RESTART, true);
-        cfg.setCategoryRequiresWorldRestart(CATEGORY_MC_RESTART, false);
-        cfg.getCategory(CATEGORY_MC_RESTART).setLanguageKey("config.category.requires_mc_restart");
-        genNameButtonID = cfg.getInt("genNameButtonID", CATEGORY_MC_RESTART, 99, 0, Integer.MAX_VALUE, "Specifies the id of the random name generation button in the world creation menu (change in case of conflicts)", "config.property.genNameButtonID");
-        worldNameLength = cfg.getInt("worldNameLength", CATEGORY_MC_RESTART, 128, 10, Integer.MAX_VALUE, "Specifies the maximum length of world name when creating a new world", "config.property.worldNameLength");
-    }
-
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-        if (event.getModID().equals(WorldNameTerrarified.MOD_ID)) {
-            loadConfig();
-        }
+        genNameButtonID = cfg.getInt("genNameButtonID", CATEGORY_GENERAL, 99, 0, Integer.MAX_VALUE, "Specifies the id of the random name generation button in the world creation menu (change in case of conflicts)", "config.property.genNameButtonID");
+        enableButtonTooltip = cfg.getBoolean("enableButtonTooltip", CATEGORY_GENERAL, true, "Enables button tooltip", "config.property.enableButtonTooltip");
+        useTexturedButton = cfg.getBoolean("useTexturedButton", CATEGORY_GENERAL, true, "Use new fancy button texture instead of default square", "config.property.useTexturedButton");
+        buttonSize = cfg.getInt("buttonSize", CATEGORY_GENERAL, 20, 1, Integer.MAX_VALUE, "The preferred size in px of the button", "config.property.buttonSize");
+        buttonX = cfg.getInt("buttonX", CATEGORY_GENERAL, -140, Integer.MIN_VALUE, Integer.MAX_VALUE, "Specifies horizontal OFFSET from the CENTER of the screen", "config.property.buttonX");
+        buttonY = cfg.getInt("buttonY", CATEGORY_GENERAL, 60, 0, Integer.MAX_VALUE, "Specifies the Y coordinate of the button starting from the TOP LEFT corner", "config.property.buttonY");
+        worldNameLength = cfg.getInt("worldNameLength", CATEGORY_GENERAL, 128, 32, Integer.MAX_VALUE, "Specifies the maximum length of world name when creating a new world", "config.property.worldNameLength");
+        useMcLocale = cfg.getBoolean("useMcLocale", CATEGORY_GENERAL, true, "Uses the same locale as Minecraft set on for name generation (if exists)", "config.property.useMcLocale");
+        localeCode = cfg.getString("localeCode", CATEGORY_GENERAL, "en_us", "Locale code to use instead of Minecraft locale", "config.property.localeCode");
+        startWithRandom = cfg.getBoolean("startWithRandom", CATEGORY_GENERAL, true, "When opening world creation screen, random name sets automatically.", "config.property.startWithRandom");
     }
 }

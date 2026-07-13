@@ -1,46 +1,30 @@
 package git.str1llax.wnt.utils;
 
 import git.str1llax.wnt.WorldNameTerrarified;
+import git.str1llax.wnt.config.ModConfig;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.client.resource.IResourceType;
-import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
-import net.minecraftforge.client.resource.VanillaResourceType;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 
-import javax.annotation.Nonnull;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Random;
-import java.util.function.Predicate;
 
-@SideOnly(Side.CLIENT)
-public class WorldNameGenerator implements ISelectiveResourceReloadListener {
-    private static String[] Compositions;
-    private static String[] Adjectives;
-    private static String[] Locations;
-    private static String[] Nouns;
-    private String currentLocale = null;
+public class WorldNameGenerator  {
+    private static String[] Compositions = null;
+    private static String[] Adjectives = null;
+    private static String[] Locations = null;
+    private static String[] Nouns = null;
 
-    @Override
-    public void onResourceManagerReload(@Nonnull IResourceManager resourceManager) {
-        ISelectiveResourceReloadListener.super.onResourceManagerReload(resourceManager);
-    }
-
-    @Override
-    public void onResourceManagerReload(@Nonnull IResourceManager resourceManager, Predicate<IResourceType> resourcePredicate) {
-        if (resourcePredicate.test(VanillaResourceType.TEXTURES) || resourcePredicate.test(VanillaResourceType.LANGUAGES)) {
-            reloadResources(resourceManager);
-        }
-    }
-
-    public final String generateRandomName() {
+    public static String generateRandomName() {
         Random random = new Random();
+
+        if (Compositions == null ||  Adjectives == null || Locations == null || Nouns == null) {
+            reloadResources(Minecraft.getMinecraft().getResourceManager());
+        }
 
         return Compositions[random.nextInt(Compositions.length)]
                 .replace("@", Adjectives[random.nextInt(Adjectives.length)])
@@ -48,25 +32,25 @@ public class WorldNameGenerator implements ISelectiveResourceReloadListener {
                 .replace("$", Nouns[random.nextInt(Nouns.length)]);
     }
 
-    private String[] readFromFile(String fileName, IResourceManager resourceManager, String locale) throws IOException {
+    private static String[] readFromFile(String fileName, IResourceManager resourceManager, String locale) throws IOException {
         BufferedReader reader;
         try {
             reader = new BufferedReader(
                     new InputStreamReader(resourceManager.getResource(
-                            new ResourceLocation(WorldNameTerrarified.MOD_ID, locale + "/" + fileName)).getInputStream(), StandardCharsets.UTF_8));
+                            new ResourceLocation(WorldNameTerrarified.MOD_ID, "compositions/" + locale + "/" + fileName)).getInputStream(), StandardCharsets.UTF_8));
 
         } catch (Exception e) {
             WorldNameTerrarified.Logger.log(Level.WARN, String.format("%s: Specified locale not found. Using default (en_us) locale", WorldNameTerrarified.MOD_NAME), e);
             reader = new BufferedReader(
                     new InputStreamReader(resourceManager.getResource(
-                            new ResourceLocation(WorldNameTerrarified.MOD_ID, "en_us/" + fileName)).getInputStream(), StandardCharsets.UTF_8));
+                            new ResourceLocation(WorldNameTerrarified.MOD_ID, "compositions/en_us/" + fileName)).getInputStream(), StandardCharsets.UTF_8));
         }
         WorldNameTerrarified.Logger.log(Level.DEBUG, String.format("%s: Reloaded %s with locale %s", WorldNameTerrarified.MOD_NAME, fileName, locale));
         return reader.lines().toArray(String[]::new);
     }
 
-    private void reloadResources(IResourceManager resourceManager) {
-        currentLocale = MinecraftForgeClient.getLocale().toString();
+    public static void reloadResources(IResourceManager resourceManager) {
+        String currentLocale = ModConfig.useMcLocale ? Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode().toLowerCase() : ModConfig.localeCode;
         try {
             Compositions = readFromFile("compositions.txt", resourceManager, currentLocale);
             Adjectives = readFromFile("adjectives.txt", resourceManager, currentLocale);

@@ -1,13 +1,14 @@
 {
   "homepage": "https://github.com/Str1llax/WorldNameTerrarified",
   "promos": {
-    "1.12.2-latest": "1.3",
-    "1.12.2-recommended": "1.3"
+    "1.12.2-latest": "1.4",
+    "1.12.2-recommended": "1.4"
   },
   "1.12.2": {
     "1.0": "First release! Lots of testing still required, but it works as expected.",
     "1.1": "Added debugger and fixed a bug where UTF-8 characters on Windows wouldn't load as expected.",
     "1.2": "Added config localization and a way to override max world name length, so it fixes 'name too long' issue.",
-    "1.3": "Replaced boring button with the new fancy textured one and improved configuration."
+    "1.3": "Replaced boring button with the new fancy textured one and improved configuration.",
+    "1.4": "Configuration update! (Keybinds included)"
   }
 }

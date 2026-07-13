@@ -24,8 +24,6 @@ public class ModConfigGUI extends GuiConfig {
         List<IConfigElement> elements = new ArrayList<>();
 
         elements.add(new ConfigElement(ModConfig.config.getCategory(ModConfig.CATEGORY_GENERAL)));
-        elements.add(new ConfigElement(ModConfig.config.getCategory(ModConfig.BUTTON_VISUALS)));
-        elements.add(new ConfigElement(ModConfig.config.getCategory(ModConfig.CATEGORY_MC_RESTART)));
 
         return elements;
     }

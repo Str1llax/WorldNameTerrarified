@@ -1,33 +1,31 @@
 # General config
 config.category.general=Основные
-config.category.general.tooltip=Основная конфигурация
+config.category.general.tooltip=Главные настройки
 
-config.property.enableMod=Мод включен
-config.property.enableMod.tooltip=Включает/Выключает мод
-
-# Button visuals config
-config.category.button_visuals=Внешний вид
-config.category.button_visuals.tooltip=Меняет внешний вид кнопки
-
-config.property.enableButtonTooltip=Включить подсказку
-config.property.buttonX.enableButtonTooltip=Подсказка при наведении мыши на кнопку
-config.property.useTexturedButton=Использовать красивую кнопку
-config.property.buttonX.useTexturedButton=Заменяет скучный квадрат на красивую текстуру
+config.property.genNameButtonID=ID Кнопки
+config.property.genNameButtonID.tooltip=Изменять следует в случае конфликтов
+config.property.enableButtonTooltip=Подсказка
+config.property.enableButtonTooltip.tooltip=Включает подсказку при наведении на кнопку
+config.property.useTexturedButton=Красивая кнопка
+config.property.useTexturedButton.tooltip=Заменяет отстойный квадрат на красивую кнопку
 config.property.buttonSize=Размер кнопки
-config.property.buttonX.buttonSize=Размер кнопки в пикселях
+config.property.buttonSize.tooltip=Размер кнопки в пикселях
 config.property.buttonX=X
-config.property.buttonX.tooltip=Меняет ОТСТУП по горизонтали от ЦЕНТРА экрана для кнопки
+config.property.buttonX.tooltip=(горизонтальный) ОТСТУП от ЦЕНТРА экрана
 config.property.buttonY=Y
-config.property.buttonY.tooltip=Меняет вертикальную координату для кнопки начиная с ВЕРХА окна
-
-# Requires MC restart config
-config.category.requires_mc_restart=Требует перезапуск
-config.category.requires_mc_restart.tooltip=Настройки, которые требуют перезапуск игры для внесения изменений
-
-config.property.genNameButtonID=ID
-config.property.genNameButtonID.tooltip=Изменяет ID новой кнопки. Следует менять в случае конфликтов
+config.property.buttonY.tooltip=(вертикальная) координата начиная СВЕРХУ экрана
 config.property.worldNameLength=Длина названия мира
-config.property.worldNameLength.tooltip=Меняет максимальную длину названия мира
+config.property.worldNameLength.tooltip=Изменяет максимальную длину названия мира
+config.property.useMcLocale=Авто-язык
+config.property.useMcLocale.tooltip=Генерирует имена на языке Майнкрафта (если нет поддержки языка, то на английском)
+config.property.localeCode=Языковой код
+config.property.localeCode.tooltip=ДОЛЖЕН БЫТЬ МАЛЕНЬКИМИ БУКВАМИ! Используется при выключенном авто-языке (Если нет, то использует en_us)
+config.property.startWithRandom=Изначально случайное имя
+config.property.startWithRandom.tooltip=При открытии меню создания мира, сразу же добавляет случайное имя
 
 # Button tooltips
 button.gen_random_name.tooltip=Случайное имя
+
+# Keys
+key.category.wnt=World Name Terrarified
+key.gen_random_name=Сгенерировать случайное имя

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 
+import javax.annotation.Nonnull;
 import java.util.Objects;
 
 public class CustomButton extends GuiButton {
@@ -42,7 +43,7 @@ public class CustomButton extends GuiButton {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
         if (ModConfig.useTexturedButton) {
             if (this.visible) {
                 mc.getTextureManager().bindTexture(Objects.requireNonNull(this.textureLocation));
