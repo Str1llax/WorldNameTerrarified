@@ -1,17 +1,16 @@
 package git.str1llax.wnt.utils;
 
-import git.str1llax.wnt.config.ModConfig;
+import com.mojang.blaze3d.platform.GlStateManager;
+import git.str1llax.wnt.config.ConfigData;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TranslationTextComponent;
 
-import javax.annotation.Nonnull;
 import java.util.Objects;
 
-public class CustomButton extends GuiButton {
+public class CustomButton extends Button {
     private final ResourceLocation textureLocation;
     private final int xTexSize;
     private final int yTexSize;
@@ -20,19 +19,19 @@ public class CustomButton extends GuiButton {
     private final int yOffset;
     private final String tooltipKey;
 
-    public CustomButton(int buttonId, int x, int y, int widthIn, int heightIn, int xTexSize, int yTexSize, int xTexStart, int yTexStart, int yOffset, ResourceLocation texPath, String key) {
-        super(buttonId, x, y, widthIn, heightIn, "");
+    public CustomButton(int x, int y, int widthIn, int heightIn, int xTexSize, int yTexSize, int xTexStart, int yTexStart, int yOffset, ResourceLocation texPath, String tooltipKey, IPressable onPress) {
+        super(x, y, widthIn, heightIn, "", onPress);
         this.xTexSize = xTexSize;
         this.yTexSize = yTexSize;
         this.xTexStart = xTexStart;
         this.yTexStart = yTexStart;
         this.yOffset = yOffset;
         this.textureLocation = texPath;
-        this.tooltipKey = key;
+        this.tooltipKey = tooltipKey;
     }
 
-    public CustomButton(int buttonId, int x, int y, int widthIn, int heightIn, String text, String tooltipKey) {
-        super(buttonId, x, y, widthIn, heightIn, text);
+    public CustomButton(int x, int y, int widthIn, int heightIn, String text, String tooltipKey, IPressable onPress) {
+        super(x, y, widthIn, heightIn, text, onPress);
         this.xTexSize = 0;
         this.yTexSize = 0;
         this.xTexStart = 0;
@@ -43,38 +42,40 @@ public class CustomButton extends GuiButton {
     }
 
     @Override
-    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
-        if (ModConfig.useTexturedButton) {
+    public void renderButton(int mouseX, int mouseY, float partialTicks) {
+        if (ConfigData.useTexturedButton.get() && textureLocation != null) {
+            Minecraft mc = Minecraft.getInstance();
             if (this.visible) {
                 mc.getTextureManager().bindTexture(Objects.requireNonNull(this.textureLocation));
 
-                this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
+                this.isHovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
 
                 float scaleX = (float) this.width / (float) this.xTexSize;
                 float scaleY = (float) this.height / (float) this.yTexSize;
 
-                GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+                GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
                 GlStateManager.disableBlend();
-                GlStateManager.disableDepth();
+                GlStateManager.disableDepthTest();
                 GlStateManager.pushMatrix();
-                GlStateManager.translate(this.x, this.y, 0.0f);
-                GlStateManager.scale(scaleX, scaleY, 1.0f);
+                GlStateManager.translatef(this.x, this.y, 0.0f);
+                GlStateManager.scalef(scaleX, scaleY, 1.0f);
 
-                this.drawTexturedModalRect(
+                this.blit(
                         0, 0,
-                        this.xTexStart, this.yTexStart + (this.hovered ? this.yOffset : 0),
+                        this.xTexStart, this.yTexStart + (this.isHovered ? this.yOffset : 0),
                         this.xTexSize, this.yTexSize);
 
                 GlStateManager.popMatrix();
             }
         } else {
-            super.drawButton(mc, mouseX, mouseY, partialTicks);
+            super.renderButton(mouseX, mouseY, partialTicks);
         }
     }
 
-    public void drawTooltip(int mouseX, int mouseY, GuiScreen parentScreen) {
-        if (this.visible && this.hovered) {
-            parentScreen.drawHoveringText(new TextComponentTranslation(this.tooltipKey).getFormattedText(), mouseX, mouseY);
+
+    public void drawTooltip(int mouseX, int mouseY, Screen parentScreen) {
+        if (this.visible && this.isHovered) {
+            parentScreen.renderTooltip(new TranslationTextComponent(this.tooltipKey).getFormattedText(), mouseX, mouseY);
         }
     }
 }

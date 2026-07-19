@@ -1,44 +1,52 @@
 package git.str1llax.wnt;
 
-import git.str1llax.wnt.proxy.CommonProxy;
+import git.str1llax.wnt.config.WNTConfig;
+import git.str1llax.wnt.config.WNTConfigScreen;
+import git.str1llax.wnt.handler.ResourceEventHandler;
+import git.str1llax.wnt.utils.ModKeybinds;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.resources.IReloadableResourceManager;
+import net.minecraft.resources.IResourceManager;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.ExtensionPoint;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.glfw.GLFW;
 
-@Mod(modid = WorldNameTerrarified.MOD_ID,
-        name = WorldNameTerrarified.MOD_NAME,
-        guiFactory = "git.str1llax.wnt.config.ModConfigGUIFactory",
-        updateJSON = "https://raw.githubusercontent.com/Str1llax/WorldNameTerrarified/refs/heads/master/update.json",
-        useMetadata = true)
+@Mod(WorldNameTerrarified.MOD_ID)
 public class WorldNameTerrarified {
     public static final String MOD_ID = "wnt";
     public static final String MOD_NAME = "World Name Terrarified";
 
-    @Mod.Instance
-    public static WorldNameTerrarified ModInstance;
+    public static Logger LOGGER = LogManager.getLogger();
 
-    public static Logger Logger;
+    public WorldNameTerrarified() {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WNTConfig.SPEC);
 
-    @SidedProxy(clientSide = "git.str1llax." + MOD_ID + ".proxy.ClientProxy", serverSide = "git.str1llax." + MOD_ID + ".proxy.ServerProxy")
-    public static CommonProxy proxy;
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            ModLoadingContext.get().registerExtensionPoint(
+                    ExtensionPoint.CONFIGGUIFACTORY,
+                    () -> ((minecraft, screen) -> new WNTConfigScreen(screen))
+            );
+        }
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        Logger = event.getModLog();
-        proxy.preInit(event);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
     }
 
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-        proxy.init(event);
-    }
+    private void clientSetup(final FMLClientSetupEvent event) {
+        IResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
+        if (resourceManager instanceof IReloadableResourceManager) {
+            ((IReloadableResourceManager) resourceManager).addReloadListener(ResourceEventHandler.INSTANCE);
+        }
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        proxy.postInit(event);
+        ClientRegistry.registerKeyBinding(ModKeybinds.genRandomNameKey);
     }
 }

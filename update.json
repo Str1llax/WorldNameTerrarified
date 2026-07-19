@@ -2,7 +2,13 @@
   "homepage": "https://github.com/Str1llax/WorldNameTerrarified",
   "promos": {
     "1.12.2-latest": "1.4",
-    "1.12.2-recommended": "1.4"
+    "1.12.2-recommended": "1.4",
+    "1.14.2-latest": "1.4",
+    "1.14.2-recommended": "1.4",
+    "1.14.3-latest": "1.4",
+    "1.14.3-recommended": "1.4",
+    "1.14.4-latest": "1.4",
+    "1.14.4-recommended": "1.4"
   },
   "1.12.2": {
     "1.0": "First release! Lots of testing still required, but it works as expected.",

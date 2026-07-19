@@ -12,14 +12,13 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'idea'
 
 version = mod_version
-group = "git.str1llax.${mod_id}"
-archivesBaseName = mod_id
+group = group_name
 
 sourceCompatibility = targetCompatibility = "1.8"
 compileJava.options.encoding = "UTF-8"
 
 minecraft {
-    mappings channel: 'snapshot', version: '20171003-1.12'
+    mappings channel: 'snapshot', version: '20190719-1.14.3'
 
     runs {
         client {
@@ -28,14 +27,41 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
 
-            jvmArg "${minecraft_jvmargs}"
+            jvmArg "${java_arguments}"
+
+            mods {
+                wnt {
+                    source sourceSets.main
+                }
+            }
         }
 
         server {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
 
-            jvmArg "${minecraft_jvmargs}"
+            jvmArg "${java_arguments}"
+
+            mods {
+                wnt {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/')
+
+            mods {
+                wnt {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
@@ -45,56 +71,23 @@ dependencies {
 }
 
 jar {
-    archiveFileName = "${mod_id}-${minecraft_version}-${mod_version}.jar"
-
     destinationDirectory = file("${projectDir}/builds")
+
+    archiveBaseName = mod_id
+    archiveVersion = "${minecraft_version}-${mod_version}"
+    archiveClassifier = "forge"
 
     manifest {
         attributes([
-            "Specification-Title": mod_id,
-            "Specification-Vendor": "Str1llax",
-            "Specification-Version": "1",
-            "Implementation-Title": project.name,
+            "Specification-Title"   : "${mod_id}",
+            "Specification-Vendor"  : "${author}",
+            "Specification-Version" : "1",
+            "Implementation-Title"  : "${project.name}",
             "Implementation-Version": "${mod_version}",
-            "Implementation-Vendor" :"Str1llax",
+            "Implementation-Vendor" : "${author}",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
 
-idea {
-    module {
-        inheritOutputDirs = true
-    }
-}
-
-task prepareAssets(type: Copy) {
-    group = 'build'
-    from project.file('src/main/resources')
-    into project.file('build/classes/java/main')
-}
-
-classes.dependsOn(prepareAssets)
-
 jar.finalizedBy('reobfJar')
-
-processResources {
-    inputs.property "version", "${mod_version}"
-    inputs.property "mcversion", "${minecraft_version}"
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        expand 'version': "${mod_version}", 'mcversion': "${minecraft_version}"
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
-
-sourceSets.each {
-    def dir = layout.buildDirectory.file("sourcesSets/$it.name").get().asFile
-    it.output.resourcesDir = dir
-    it.java.outputDir = dir
-}

@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[26, 29)"
+issueTrackerURL="http://my.issue.tracker/"
+[[mods]]
+modId="wnt"
+version="${file.jarVersion}"
+displayName="World Name Terrarified"
+updateJSONURL="https://raw.githubusercontent.com/Str1llax/WorldNameTerrarified/refs/heads/master/update.json"
+displayURL="https://github.com/Str1llax/WorldNameTerrarified"
+logoFile="logo.png"
+credits="Thanks to my friend Rain4ik for the idea behind this mod, to the GitHub projects for their help in bringing it to life and to the terraria.wiki.gg for lists of words used in world names"
+authors="Str1llax"
+description='''
+Adds random world name generator from Terraria to Minecraft!
+
+Adds keybind and new button to world creation screen. Highly customizable!
+'''
+
+[[dependencies.wnt]]
+    modId="forge"
+    mandatory=true
+    versionRange="[26, 29)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.wnt]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14, 1.15)"
+    ordering="NONE"
+    side="BOTH"

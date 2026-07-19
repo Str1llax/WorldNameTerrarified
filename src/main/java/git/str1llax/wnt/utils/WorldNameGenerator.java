@@ -1,9 +1,9 @@
 package git.str1llax.wnt.utils;
 
 import git.str1llax.wnt.WorldNameTerrarified;
-import git.str1llax.wnt.config.ModConfig;
+import git.str1llax.wnt.config.ConfigData;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.Level;
 
@@ -23,7 +23,7 @@ public class WorldNameGenerator  {
         Random random = new Random();
 
         if (Compositions == null ||  Adjectives == null || Locations == null || Nouns == null) {
-            reloadResources(Minecraft.getMinecraft().getResourceManager());
+            reloadResources(Minecraft.getInstance().getResourceManager());
         }
 
         return Compositions[random.nextInt(Compositions.length)]
@@ -40,24 +40,24 @@ public class WorldNameGenerator  {
                             new ResourceLocation(WorldNameTerrarified.MOD_ID, "compositions/" + locale + "/" + fileName)).getInputStream(), StandardCharsets.UTF_8));
 
         } catch (Exception e) {
-            WorldNameTerrarified.Logger.log(Level.WARN, String.format("%s: Specified locale not found. Using default (en_us) locale", WorldNameTerrarified.MOD_NAME), e);
+            WorldNameTerrarified.LOGGER.log(Level.WARN, String.format("%s: Specified locale not found. Using default (en_us) locale", WorldNameTerrarified.MOD_NAME), e);
             reader = new BufferedReader(
                     new InputStreamReader(resourceManager.getResource(
                             new ResourceLocation(WorldNameTerrarified.MOD_ID, "compositions/en_us/" + fileName)).getInputStream(), StandardCharsets.UTF_8));
         }
-        WorldNameTerrarified.Logger.log(Level.DEBUG, String.format("%s: Reloaded %s with locale %s", WorldNameTerrarified.MOD_NAME, fileName, locale));
+        WorldNameTerrarified.LOGGER.log(Level.DEBUG, String.format("%s: Reloaded %s with locale %s", WorldNameTerrarified.MOD_NAME, fileName, locale));
         return reader.lines().toArray(String[]::new);
     }
 
     public static void reloadResources(IResourceManager resourceManager) {
-        String currentLocale = ModConfig.useMcLocale ? Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode().toLowerCase() : ModConfig.localeCode;
+        String currentLocale = ConfigData.useMcLocale.get() ? Minecraft.getInstance().getLanguageManager().getCurrentLanguage().getCode().toLowerCase() : ConfigData.localeCode.get().toLowerCase();
         try {
             Compositions = readFromFile("compositions.txt", resourceManager, currentLocale);
             Adjectives = readFromFile("adjectives.txt", resourceManager, currentLocale);
             Locations = readFromFile("locations.txt", resourceManager, currentLocale);
             Nouns = readFromFile("nouns.txt", resourceManager, currentLocale);
         } catch (Exception e) {
-            WorldNameTerrarified.Logger.log(Level.ERROR, String.format("%s: Error while loading localization files.", WorldNameTerrarified.MOD_NAME), e);
+            WorldNameTerrarified.LOGGER.log(Level.ERROR, String.format("%s: Error while loading localization files.", WorldNameTerrarified.MOD_NAME), e);
         }
     }
 }

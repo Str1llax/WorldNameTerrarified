@@ -1,0 +1,25 @@
+{
+  "config.title": "Конфигурация WNT",
+
+  "config.property.enableButtonTooltip": "Подсказка",
+  "config.property.useTexturedButton": "Красивая кнопка",
+  "config.property.buttonSize": "Размер кнопки",
+  "config.property.buttonX": "X Кнопки",
+  "config.property.buttonY": "Y Кнопки",
+  "config.property.worldNameLength": "Длина названия мира",
+  "config.property.useMcLocale": "Авто-язык",
+  "config.property.localeCode": "Код языка",
+  "config.property.startWithRandom": "Start with random",
+
+  "button.gen_random_name.tooltip": "Случайное имя",
+  "button.config.done": "Готово",
+  "button.config.exit": "Выйти",
+  "button.config.reset": "Сбросить",
+  "button.config.reset_all": "Сбросить ВСЁ",
+
+  "options.on": "ВКЛ",
+  "options.off": "ВЫКЛ",
+
+  "key.category.wnt": "World Name Terrarified",
+  "key.gen_random_name": "Сгенерировать случайное имя"
+}

@@ -1,0 +1,25 @@
+{
+  "config.title": "World Name Terrarified Configuration",
+
+  "config.property.enableButtonTooltip": "Enable tooltip",
+  "config.property.useTexturedButton": "Fancy Button",
+  "config.property.buttonSize": "Button Size",
+  "config.property.buttonX": "X",
+  "config.property.buttonY": "Y",
+  "config.property.worldNameLength": "World Name Length",
+  "config.property.useMcLocale": "Auto-lang",
+  "config.property.localeCode": "Language code",
+  "config.property.startWithRandom": "Start with random",
+
+  "button.gen_random_name.tooltip": "Random name",
+  "button.config.done": "Done",
+  "button.config.exit": "Exit",
+  "button.config.reset": "Reset",
+  "button.config.reset_all": "Reset ALL",
+
+  "options.on": "ON",
+  "options.off": "OFF",
+
+  "key.category.wnt": "World Name Terrarified",
+  "key.gen_random_name": "Generate random world name"
+}
